@@ -4,6 +4,7 @@ import { AppointmentForm } from '@/components/forms/AppointmentForm'
 import { getPatient } from '@/lib/actions/patient.actions'
 
 import * as Sentry from '@sentry/nextjs'
+import Link from 'next/link'
 
 const Appointment = async ({ params: { userId } }: SearchParamProps) => {
   const patient = await getPatient(userId)
@@ -14,13 +15,19 @@ const Appointment = async ({ params: { userId } }: SearchParamProps) => {
     <div className='flex h-screen max-h-screen'>
       <section className='remove-scrollbar container my-auto'>
         <div className='sub-container max-w-[860px] flex-1 justify-between'>
-          <Image
-            src='/assets/icons/logo-full.svg'
-            height={1000}
-            width={1000}
-            alt='logo'
-            className='mb-12 h-10 w-fit'
-          />
+          <Link
+            href='/'
+            className='cursor-pointer flex gap-2 items-center'
+          >
+            <Image
+              src='/assets/icons/logo-icon.svg'
+              height={1000}
+              width={1000}
+              alt='patient'
+              className='mb-12 h-10 w-fit'
+            />
+            <span className='text-24-bold mb-12'>Doctor Plus</span>
+          </Link>
 
           <AppointmentForm
             patientId={patient?.$id}
